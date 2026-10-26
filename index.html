@@ -6,6 +6,30 @@
 <title>Meridian Estates — Exceptional Homes, Quietly Handled</title>
 <meta name="description" content="Meridian Estates is a boutique real estate agency representing exceptional homes and considered buyers.">
 
+<!-- ============================================================
+     OPEN GRAPH / SOCIAL PREVIEW
+     Replace https://yourdomain.com/ with your live domain after
+     deploying. The image file itself (og-image.png) should live
+     in the same folder as this index.html.
+     ============================================================ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Meridian Estates">
+<meta property="og:title" content="Meridian Estates — Exceptional Homes, Quietly Handled">
+<meta property="og:description" content="A boutique real estate agency representing exceptional homes and considered buyers.">
+<meta property="og:url" content="https://yourdomain.com/">
+<meta property="og:image" content="https://yourdomain.com/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Meridian Estates — exceptional homes, quietly handled">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meridian Estates — Exceptional Homes, Quietly Handled">
+<meta name="twitter:description" content="A boutique real estate agency representing exceptional homes and considered buyers.">
+<meta name="twitter:image" content="https://yourdomain.com/og-image.png">
+<meta name="twitter:image:alt" content="Meridian Estates — exceptional homes, quietly handled">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -141,7 +165,7 @@ section{padding-block:clamp(4rem, 9vw, 7.5rem)}
 .link-arrow::after{content:"→";transition:transform .3s var(--ease)}
 .link-arrow:hover::after{transform:translateX(4px)}
 
-/* Scroll-reveal (only active when JS is present) */
+/* Scroll-reveal */
 .js .reveal{
   opacity:0;transform:translateY(26px);
   transition:opacity .9s var(--ease), transform .9s var(--ease);
@@ -172,7 +196,7 @@ section{padding-block:clamp(4rem, 9vw, 7.5rem)}
 }
 .logo span{color:var(--gold)}
 
-/* --- Mobile menu panel (default) --- */
+/* --- Mobile menu panel --- */
 .nav-links{
   position:fixed;inset:0;z-index:95;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
