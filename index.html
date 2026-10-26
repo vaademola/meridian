@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian Estates — Exceptional Homes, Quietly Handled</title>
+<meta name="description" content="Meridian Estates is a boutique real estate agency representing exceptional homes and considered buyers.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+/* ============================================================
+   1. TOKENS
+   ============================================================ */
+:root{
+  --ink:#0d0d0d;
+  --paper:#faf8f5;
+  --paper-2:#f2eee8;
+  --gold:#b08d57;
+  --muted:#6f6a63;
+  --line:rgba(13,13,13,.13);
+
+  --maxw:1280px;
+  --gutter:clamp(1.25rem, 5vw, 4rem);
+
+  --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:1rem;
+  line-height:1.7;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+body.menu-open{overflow:hidden}
+
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font-family:inherit}
+
+h1,h2,h3,h4{
+  font-family:var(--serif);
+  font-weight:300;
+  line-height:1.08;
+  letter-spacing:-.01em;
+  margin:0;
+}
+
+h1{font-size:clamp(2.6rem, 7.5vw, 5.25rem)}
+h2{font-size:clamp(2rem, 4.6vw, 3.4rem)}
+h3{font-size:clamp(1.35rem, 2.2vw, 1.6rem); line-height:1.2}
+
+p{margin:0 0 1.1em}
+p:last-child{margin-bottom:0}
+
+section{padding-block:clamp(4rem, 9vw, 7.5rem)}
+[id]{scroll-margin-top:90px}
+
+.wrap{
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:999;
+  background:var(--ink);color:var(--paper);
+  padding:.9rem 1.4rem;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+}
+.skip:focus{left:1rem;top:1rem}
+
+/* ============================================================
+   3. SHARED COMPONENTS
+   ============================================================ */
+.eyebrow{
+  display:flex;align-items:center;gap:.85rem;
+  font-size:.7rem;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 1.4rem;
+}
+.eyebrow::before{
+  content:"";width:34px;height:1px;background:currentColor;flex:none;
+}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:1rem 1.9rem;
+  font-size:.72rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  border:1px solid transparent;border-radius:0;
+  transition:background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+}
+.btn--solid{background:var(--ink);color:var(--paper)}
+.btn--solid:hover{background:var(--gold);color:#fff}
+.btn--ghost{border-color:currentColor;background:transparent;color:inherit}
+.btn--ghost:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+.section-head{
+  display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:1.5rem 3rem;
+  margin-bottom:clamp(2.25rem, 4vw, 3.5rem);
+}
+.section-head p{max-width:46ch;color:var(--muted);margin:0}
+
+.link-arrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding-bottom:.35rem;
+  transition:color .3s var(--ease), border-color .3s var(--ease);
+}
+.link-arrow:hover{color:var(--gold);border-color:var(--gold)}
+.link-arrow::after{content:"→";transition:transform .3s var(--ease)}
+.link-arrow:hover::after{transform:translateX(4px)}
+
+/* Scroll-reveal (only active when JS is present) */
+.js .reveal{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .9s var(--ease), transform .9s var(--ease);
+}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ============================================================
+   4. HEADER + NAV
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:2rem;
+  height:74px;
+}
+
+.logo{
+  font-family:var(--serif);
+  font-size:1.35rem;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);
+  white-space:nowrap;position:relative;z-index:101;
+}
+.logo span{color:var(--gold)}
+
+/* --- Mobile menu panel (default) --- */
+.nav-links{
+  position:fixed;inset:0;z-index:95;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1.75rem;
+  padding:6rem var(--gutter) 3rem;
+  background:var(--paper);
+  transform:translateY(-100%);
+  transition:transform .6s cubic-bezier(.76,0,.24,1);
+  overflow-y:auto;
+}
+.nav-links.is-open{transform:translateY(0)}
+
+.nav-links a:not(.btn){
+  font-family:var(--serif);
+  font-size:1.9rem;font-weight:300;
+  text-decoration:none;color:var(--ink);
+  transition:color .3s var(--ease);
+}
+.nav-links a:not(.btn):hover{color:var(--gold)}
+
+.nav-cta{width:100%;max-width:300px;margin-top:.5rem}
+
+/* --- Burger --- */
+.burger{
+  position:relative;z-index:101;
+  width:44px;height:44px;padding:0;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:none;border:0;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.burger span{
+  display:block;position:relative;
+  width:24px;height:1.5px;background:var(--ink);
+  transition:background .3s var(--ease);
+}
+.burger span::before,
+.burger span::after{
+  content:"";position:absolute;left:0;
+  width:24px;height:1.5px;background:var(--ink);
+  transition:transform .4s var(--ease);
+}
+.burger span::before{top:-7px}
+.burger span::after{top:7px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+
+/* --- Desktop nav --- */
+@media (min-width:900px){
+  .site-header{
+    background:rgba(250,248,245,.85);
+    -webkit-backdrop-filter:blur(18px);
+    backdrop-filter:blur(18px);
+  }
+  .nav{height:86px}
+  .burger{display:none}
+
+  .nav-links{
+    position:static;inset:auto;
+    flex-direction:row;align-items:center;justify-content:flex-end;
+    gap:2.4rem;
+    padding:0;background:none;
+    transform:none;transition:none;overflow:visible;
+  }
+  .nav-links a:not(.btn){
+    font-family:var(--sans);
+    font-size:.74rem;font-weight:500;
+    letter-spacing:.18em;text-transform:uppercase;
+    position:relative;padding-block:.4rem;
+  }
+  .nav-links a:not(.btn)::after{
+    content:"";position:absolute;left:0;bottom:0;
+    width:100%;height:1px;background:var(--gold);
+    transform:scaleX(0);transform-origin:right;
+    transition:transform .4s var(--ease);
+  }
+  .nav-links a:not(.btn):hover::after{transform:scaleX(1);transform-origin:left}
+  .nav-cta{width:auto;max-width:none;margin-top:0;padding:.85rem 1.5rem}
+}
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:660px;                 /* fallback */
+  min-height:clamp(540px, 84svh, 880px);
+  display:flex;align-items:flex-end;
+  overflow:hidden;
+  color:#fff;
+  background:var(--ink);
+}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img{
+  width:100%;height:100%;object-fit:cover;
+  animation:heroZoom 16s var(--ease) forwards;
+}
+@keyframes heroZoom{from{transform:scale(1.09)}to{transform:scale(1)}}
+
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.18) 38%,
+    rgba(0,0,0,.72) 100%);
+}
+
+.hero-inner{
+  position:relative;z-index:2;
+  width:100%;
+  padding-block:clamp(3rem, 7vw, 5.5rem);
+}
+.hero .eyebrow{color:rgba(255,255,255,.85)}
+.hero .eyebrow::before{background:var(--gold)}
+.hero h1{max-width:16ch;color:#fff}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  max-width:44ch;
+  margin-top:1.5rem;
+  color:rgba(255,255,255,.82);
+  font-size:clamp(.95rem, 1.6vw, 1.05rem);
+}
+.hero-actions{
+  display:flex;flex-wrap:wrap;gap:.9rem;
+  margin-top:2.25rem;
+}
+.hero .btn--solid{background:var(--paper);color:var(--ink)}
+.hero .btn--solid:hover{background:var(--gold);color:#fff}
+.hero .btn--ghost{color:#fff}
+
+/* ============================================================
+   6. SEARCH BAR
+   ============================================================ */
+.search-wrap{
+  position:relative;z-index:5;
+  margin-top:clamp(-4.5rem, -6vw, -3rem);
+  padding-bottom:clamp(3rem, 6vw, 5rem);
+}
+
+.searchbar{
+  display:grid;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  box-shadow:0 40px 70px -40px rgba(13,13,13,.45);
+}
+.search-field{
+  background:var(--paper);
+  padding:1rem 1.35rem;
+}
+.search-field label{
+  display:block;
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:.4rem;
+}
+.search-field select,
+.search-field input{
+  width:100%;
+  border:0;background:transparent;
+  font-family:inherit;font-size:.95rem;font-weight:300;
+  color:var(--ink);
+  padding:0;
+  outline:none;
+  border-radius:0;
+  -webkit-appearance:none;appearance:none;
+}
+.search-field select{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%236f6a63'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right center;
+  padding-right:1.2rem;
+}
+.searchbar button{
+  border:0;cursor:pointer;
+  background:var(--ink);color:var(--paper);
+  padding:1.35rem 2.25rem;
+  font-size:.72rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  transition:background .35s var(--ease);
+}
+.searchbar button:hover{background:var(--gold)}
+
+@media (min-width:760px){
+  .searchbar{grid-template-columns:repeat(3,1fr) auto}
+}
+
+/* ============================================================
+   7. LISTINGS
+   ============================================================ */
+.listings-grid{
+  display:grid;
+  gap:clamp(1.75rem, 3vw, 2.5rem);
+  grid-template-columns:1fr;
+}
+@media (min-width:620px){ .listings-grid{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1000px){ .listings-grid{grid-template-columns:repeat(3,1fr)} }
+
+.card{display:flex;flex-direction:column}
+
+.card-media{
+  position:relative;display:block;
+  overflow:hidden;
+  aspect-ratio:4/3;
+  background:var(--paper-2);
+}
+.card-media img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.2s var(--ease);
+}
+.card:hover .card-media img,
+.card:focus-within .card-media img{transform:scale(1.07)}
+
+.card-tag{
+  position:absolute;top:1rem;left:1rem;
+  background:rgba(250,248,245,.94);
+  color:var(--ink);
+  padding:.45rem .85rem;
+  font-size:.58rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+}
+
+.card-body{padding-top:1.4rem}
+
+.card-price{
+  font-family:var(--serif);
+  font-size:1.4rem;font-weight:400;
+  color:var(--gold);
+  margin:0 0 .35rem;
+  letter-spacing:.01em;
+}
+
+.card-title{margin:0 0 .55rem}
+.card-title a{
+  text-decoration:none;color:var(--ink);
+  background-image:linear-gradient(var(--gold),var(--gold));
+  background-size:0% 1px;
+  background-repeat:no-repeat;
+  background-position:0 100%;
+  transition:background-size .5s var(--ease);
+  padding-bottom:2px;
+}
+.card:hover .card-title a{background-size:100% 1px}
+
+.card-meta{
+  font-size:.8rem;
+  letter-spacing:.06em;
+  color:var(--muted);
+  margin:0 0 .2rem;
+}
+.card-loc{
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0;
+}
+
+.listings-foot{
+  display:flex;justify-content:center;
+  margin-top:clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ============================================================
+   8. ABOUT + STATS
+   ============================================================ */
+.about{background:var(--paper-2)}
+
+.about-grid{
+  display:grid;
+  gap:clamp(2.25rem, 5vw, 4.5rem);
+  align-items:center;
+}
+@media (min-width:900px){
+  .about-grid{grid-template-columns:1fr 1fr}
+}
+
+.about-media{position:relative;overflow:hidden}
+.about-media img{
+  width:100%;aspect-ratio:4/5;object-fit:cover;
+}
+@media (min-width:900px){
+  .about-media img{aspect-ratio:3/4}
+}
+
+.about-copy p{color:var(--muted);max-width:52ch}
+.about-copy h2{margin-bottom:1.5rem;max-width:18ch}
+.about-copy .btn{margin-top:1rem}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2.5rem 2rem;
+  border-top:1px solid var(--line);
+  margin-top:clamp(3rem, 6vw, 5rem);
+  padding-top:clamp(2.5rem, 4vw, 3.5rem);
+}
+@media (min-width:820px){
+  .stats{grid-template-columns:repeat(4,1fr)}
+}
+
+.stat b{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(2.2rem, 4vw, 3.2rem);
+  font-weight:300;
+  line-height:1;
+  letter-spacing:-.02em;
+  margin-bottom:.6rem;
+}
+.stat span{
+  font-size:.68rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ============================================================
+   9. SERVICES (dark band)
+   ============================================================ */
+.services{
+  background:var(--ink);
+  color:rgba(250,248,245,.72);
+}
+.services h2{color:var(--paper)}
+.services .section-head p{color:rgba(250,248,245,.6)}
+
+.service-grid{
+  display:grid;
+  border-bottom:1px solid rgba(255,255,255,.13);
+}
+@media (min-width:860px){
+  .service-grid{grid-template-columns:1fr 1fr;column-gap:clamp(2rem, 5vw, 4.5rem)}
+}
+
+.service{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:1.1rem;
+  padding-block:1.9rem;
+  border-top:1px solid rgba(255,255,255,.13);
+}
+.service .num{
+  font-family:var(--serif);
+  font-size:1rem;
+  color:var(--gold);
+  line-height:1.6;
+}
+.service h3{color:var(--paper);margin-bottom:.5rem}
+.service p{font-size:.92rem;margin:0;color:rgba(250,248,245,.62)}
+
+/* ============================================================
+   10. TESTIMONIAL
+   ============================================================ */
+.quote{text-align:center;background:var(--paper)}
+.quote .wrap{max-width:960px}
+.quote blockquote{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(1.5rem, 3.4vw, 2.5rem);
+  line-height:1.35;
+  letter-spacing:-.01em;
+}
+.quote blockquote::before{
+  content:"";
+  display:block;
+  width:52px;height:1px;
+  background:var(--gold);
+  margin:0 auto 2.25rem;
+}
+.quote cite{
+  display:block;
+  margin-top:2.25rem;
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:.68rem;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ============================================================
+   11. CONTACT
+   ============================================================ */
+.contact{background:var(--paper-2)}
+
+.contact-grid{
+  display:grid;
+  gap:clamp(2.5rem, 5vw, 5rem);
+}
+@media (min-width:920px){
+  .contact-grid{grid-template-columns:1fr 1.05fr;align-items:start}
+}
+
+.contact-copy h2{margin-bottom:1.4rem;max-width:16ch}
+.contact-copy > p{color:var(--muted);max-width:44ch}
+
+.contact-list{
+  list-style:none;
+  margin:2.5rem 0 0;padding:0;
+  display:grid;gap:1.5rem;
+  border-top:1px solid var(--line);
+  padding-top:2rem;
+}
+.contact-list li{display:grid;gap:.2rem}
+.contact-list dt,
+.contact-list .label{
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);
+}
+.contact-list a{
+  text-decoration:none;
+  font-size:1.02rem;
+  transition:color .3s var(--ease);
+}
+.contact-list a:hover{color:var(--gold)}
+
+/* Form */
+.contact-form{display:grid;gap:1.6rem}
+@media (min-width:560px){
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+}
+
+.field{display:block}
+.field label{
+  display:block;
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:.45rem;
+}
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  font-family:inherit;
+  font-size:1rem;font-weight:300;
+  color:var(--ink);
+  background:transparent;
+  border:0;border-bottom:1px solid var(--line);
+  border-radius:0;
+  padding:.65rem 0;
+  outline:none;
+  transition:border-color .35s var(--ease);
+  -webkit-appearance:none;appearance:none;
+}
+.field select{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%236f6a63'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right center;
+}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{border-bottom-color:var(--gold)}
+.field input::placeholder,
+.field textarea::placeholder{color:rgba(111,106,99,.5)}
+
+.contact-form .btn{justify-self:start;margin-top:.5rem}
+
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+.site-footer{
+  background:var(--ink);
+  color:rgba(250,248,245,.6);
+  padding-block:clamp(3.5rem, 7vw, 5.5rem) 2rem;
+  font-size:.88rem;
+}
+.footer-grid{
+  display:grid;
+  gap:2.75rem;
+}
+@media (min-width:760px){
+  .footer-grid{grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem}
+}
+
+.footer-brand .logo{color:var(--paper);display:inline-block;margin-bottom:1.25rem}
+.footer-brand p{max-width:32ch;color:rgba(250,248,245,.5)}
+
+.footer-col h4{
+  font-family:var(--sans);
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 1.15rem;
+}
+.footer-col ul{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
+.footer-col a{
+  text-decoration:none;
+  color:rgba(250,248,245,.62);
+  transition:color .3s var(--ease);
+}
+.footer-col a:hover{color:var(--paper)}
+
+.footer-bottom{
+  display:flex;flex-wrap:wrap;gap:1rem;
+  justify-content:space-between;align-items:center;
+  margin-top:clamp(3rem, 6vw, 4.5rem);
+  padding-top:1.75rem;
+  border-top:1px solid rgba(255,255,255,.12);
+  font-size:.74rem;
+  letter-spacing:.06em;
+  color:rgba(250,248,245,.42);
+}
+.footer-bottom a{text-decoration:none}
+.footer-bottom a:hover{color:var(--paper)}
+
+/* ============================================================
+   13. MOTION PREFERENCES
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  .js .reveal{opacity:1;transform:none}
+  .hero-media img{animation:none}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="#top">Meridian<span>.</span></a>
+
+    <nav id="primary-nav" class="nav-links" aria-label="Primary">
+      <a href="#listings">Listings</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn--solid nav-cta">Book a viewing</a>
+    </nav>
+
+    <button class="burger" type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="primary-nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- =======================================================
+       HERO
+       ======================================================= -->
+  <section class="hero" id="top">
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80"
+           alt="Contemporary white villa with a reflecting pool at dusk"
+           fetchpriority="high">
+    </div>
+
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Est. 2004 — Boutique Representation</p>
+      <h1>Exceptional homes,<br><em>quietly</em> handled.</h1>
+      <p class="hero-sub">
+        A private-client agency representing architecturally significant
+        residences and the people who care for them.
+      </p>
+      <div class="hero-actions">
+        <a href="#listings" class="btn btn--solid">View the collection</a>
+        <a href="#contact" class="btn btn--ghost">Speak with an advisor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       SEARCH BAR
+       ======================================================= -->
+  <div class="wrap search-wrap">
+    <form class="searchbar" action="#" method="get" role="search">
+      <div class="search-field">
+        <label for="s-location">Location</label>
+        <input id="s-location" name="location" type="text" placeholder="City or neighbourhood">
+      </div>
+
+      <div class="search-field">
+        <label for="s-type">Property type</label>
+        <select id="s-type" name="type">
+          <option>Any type</option>
+          <option>Villa</option>
+          <option>Penthouse</option>
+          <option>Townhouse</option>
+          <option>Estate</option>
+        </select>
+      </div>
+
+      <div class="search-field">
+        <label for="s-price">Price range</label>
+        <select id="s-price" name="price">
+          <option>Any price</option>
+          <option>Up to $2M</option>
+          <option>$2M – $5M</option>
+          <option>$5M – $10M</option>
+          <option>$10M+</option>
+        </select>
+      </div>
+
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <!-- =======================================================
+       LISTINGS
+       ======================================================= -->
+  <section id="listings" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">The Collection</p>
+          <h2>Currently represented</h2>
+        </div>
+        <p>
+          A deliberately small portfolio. Every property is visited,
+          vetted and photographed by our own team.
+        </p>
+      </div>
+
+      <div class="listings-grid">
+
+        <article class="card reveal">
+          <a class="card-media" href="#" aria-label="View Villa Serena">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=80"
+                 alt="Modern villa with pool and palm trees" loading="lazy">
+            <span class="card-tag">For Sale</span>
+          </a>
+          <div class="card-body">
+            <p class="card-price">$4,250,000</p>
+            <h3 class="card-title"><a href="#">Villa Serena</a></h3>
+            <p class="card-meta">4 Beds · 5 Baths · 6,200 sq ft</p>
+            <p class="card-loc">Coral Gables, Florida</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a class="card-media" href="#" aria-label="View The Ridgeline House">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80"
+                 alt="Modern hillside home with large windows" loading="lazy">
+            <span class="card-tag">For Sale</span>
+          </a>
+          <div class="card-body">
+            <p class="card-price">$7,900,000</p>
+            <h3 class="card-title"><a href="#">The Ridgeline House</a></h3>
+            <p class="card-meta">5 Beds · 6 Baths · 8,450 sq ft</p>
+            <p class="card-loc">Aspen, Colorado</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a class="card-media" href="#" aria-label="View Penthouse 42">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
+                 alt="Bright minimal living room with designer furniture" loading="lazy">
+            <span class="card-tag">New</span>
+          </a>
+          <div class="card-body">
+            <p class="card-price">$3,180,000</p>
+            <h3 class="card-title"><a href="#">Penthouse 42</a></h3>
+            <p class="card-meta">3 Beds · 3.5 Baths · 3,100 sq ft</p>
+            <p class="card-loc">Tribeca, New York</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a class="card-media" href="#" aria-label="View Casa del Mar">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80"
+                 alt="Coastal villa exterior with lawn and pool" loading="lazy">
+            <span class="card-tag">For Sale</span>
+          </a>
+          <div class="card-body">
+            <p class="card-price">$5,640,000</p>
+            <h3 class="card-title"><a href="#">Casa del Mar</a></h3>
+            <p class="card-meta">4 Beds · 4 Baths · 5,300 sq ft</p>
+            <p class="card-loc">Marbella, Spain</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a class="card-media" href="#" aria-label="View The Linden Estate">
+            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80"
+                 alt="Traditional stone estate with landscaped garden" loading="lazy">
+            <span class="card-tag">Off Market</span>
+          </a>
+          <div class="card-body">
+            <p class="card-price">Price on request</p>
+            <h3 class="card-title"><a href="#">The Linden Estate</a></h3>
+            <p class="card-meta">7 Beds · 8 Baths · 12,900 sq ft</p>
+            <p class="card-loc">Cotswolds, England</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <a class="card-media" href="#" aria-label="View Atelier Loft">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80"
+                 alt="Loft interior with exposed beams and large windows" loading="lazy">
+            <span class="card-tag">For Sale</span>
+          </a>
+          <div class="card-body">
+            <p class="card-price">$2,375,000</p>
+            <h3 class="card-title"><a href="#">Atelier Loft</a></h3>
+            <p class="card-meta">2 Beds · 2 Baths · 2,400 sq ft</p>
+            <p class="card-loc">Le Marais, Paris</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="listings-foot reveal">
+        <a href="#" class="link-arrow">View all 48 properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       ABOUT + STATS
+       ======================================================= -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-media reveal">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1100&q=80"
+               alt="Elegant interior with natural light and timber floors" loading="lazy">
+        </div>
+
+        <div class="about-copy reveal">
+          <p class="eyebrow">The Agency</p>
+          <h2>A small firm, by design.</h2>
+          <p>
+            Meridian was founded on a simple conviction: the sale of a
+            significant home deserves the attention of a principal, not a
+            call centre. We take on a limited number of mandates each year
+            so that every client works directly with the people who know
+            their property best.
+          </p>
+          <p>
+            Our approach is discreet, unhurried and entirely personal —
+            from the first valuation to the final signature, and long after.
+          </p>
+          <a href="#contact" class="btn btn--ghost">Meet the team</a>
+        </div>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><b>21</b><span>Years established</span></div>
+        <div class="stat"><b>$1.4B</b><span>Property transacted</span></div>
+        <div class="stat"><b>48</b><span>Active listings</span></div>
+        <div class="stat"><b>96%</b><span>Client referral rate</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       SERVICES
+       ======================================================= -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">What we do</p>
+          <h2>Considered, end to end.</h2>
+        </div>
+        <p>
+          Four disciplines, one point of contact. No hand-offs, no
+          intermediaries.
+        </p>
+      </div>
+
+      <div class="service-grid">
+        <article class="service reveal">
+          <span class="num">01</span>
+          <div>
+            <h3>Private Sales</h3>
+            <p>Discreet marketing of significant homes to a vetted network of buyers, with full control over who sees what, and when.</p>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <span class="num">02</span>
+          <div>
+            <h3>Buyer Representation</h3>
+            <p>We search on your behalf — including off-market opportunities — negotiate hard, and manage every detail through to completion.</p>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <span class="num">03</span>
+          <div>
+            <h3>Valuation &amp; Strategy</h3>
+            <p>Evidence-led pricing, honest advice on presentation, and a clear plan for achieving the best result in your timeframe.</p>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <span class="num">04</span>
+          <div>
+            <h3>Portfolio Management</h3>
+            <p>Long-term stewardship for owners of multiple properties — acquisitions, lettings, maintenance and reporting.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       TESTIMONIAL
+       ======================================================= -->
+  <section class="quote">
+    <div class="wrap reveal">
+      <blockquote>
+        They sold a house we had lived in for thirty years and made it feel
+        effortless. Not once did we feel like a transaction.
+      </blockquote>
+      <cite>— Private client, Cotswolds</cite>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       CONTACT
+       ======================================================= -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy reveal">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Begin a conversation.</h2>
+        <p>
+          Whether you are considering a sale, a purchase, or simply want a
+          candid view of the market, we would be glad to hear from you.
+        </p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="label">Telephone</span>
+            <a href="tel:+15551234567">+1 (555) 123 4567</a>
+          </li>
+          <li>
+            <span class="label">Email</span>
+            <a href="mailto:hello@meridianestates.com">hello@meridianestates.com</a>
+          </li>
+          <li>
+            <span class="label">Studio</span>
+            <span>118 Bay Street, Suite 400<br>Miami, FL 33131</span>
+          </li>
+        </ul>
+      </div>
+
+      <form class="contact-form reveal" action="#" method="post">
+        <div class="form-row">
+          <div class="field">
+            <label for="c-name">Full name</label>
+            <input id="c-name" name="name" type="text" placeholder="Jane Doe" required>
+          </div>
+          <div class="field">
+            <label for="c-email">Email</label>
+            <input id="c-email" name="email" type="email" placeholder="jane@example.com" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="c-interest">I'm interested in</label>
+          <select id="c-interest" name="interest">
+            <option>Buying a property</option>
+            <option>Selling a property</option>
+            <option>Valuation advice</option>
+            <option>Portfolio management</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="c-message">Message</label>
+          <textarea id="c-message" name="message" placeholder="Tell us a little about what you have in mind…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--solid">Send enquiry</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#top">Meridian<span>.</span></a>
+        <p>Boutique representation of exceptional homes across the United States and Europe.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#listings">Listings</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Offices</h4>
+        <ul>
+          <li><a href="#">Miami</a></li>
+          <li><a href="#">New York</a></li>
+          <li><a href="#">London</a></li>
+          <li><a href="#">Paris</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Meridian Estates. All rights reserved.</span>
+      <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Mobile menu ---------- */
+(function () {
+  var burger = document.querySelector('.burger');
+  var nav    = document.getElementById('primary-nav');
+  if (!burger || !nav) return;
+
+  function close() {
+    nav.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Open menu');
+    document.body.classList.remove('menu-open');
+  }
+
+  burger.addEventListener('click', function () {
+    var isOpen = burger.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      close();
+    } else {
+      nav.classList.add('is-open');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Close menu');
+      document.body.classList.add('menu-open');
+    }
+  });
+
+  // Close when a link is tapped
+  nav.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', close);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+
+  // Reset when resizing to desktop
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 900) close();
+  });
+})();
+
+/* ---------- Scroll reveal ---------- */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items  = document.querySelectorAll('.reveal');
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
